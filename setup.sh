@@ -84,13 +84,10 @@ airflow db init
 airflow users create -u airflow -f airflow -l airflow -r Admin -e airflow@gmail.com
 
 # Will need to enter a password at some point before continuing. Just use 'airflow'
+# Navigate to EC2 console --> security --> security group
+# Edit inbound rules --> add rule: Custom TCP, Port 8080, optional: Description airflow
+# Save. Now we can access web ui.
 
-
-
-# The Standalone command will initialise the database, make a user,
-# and start all components for you.
-#airflow standalone
-
-# Visit localhost:8080 in the browser and use the admin account details
-# shown on the terminal to login.
-# Enable the example_bash_operator dag in the home page
+# Now ready to run airflow. & to run in background. May need to open up another terminal (in venv) to run scheduler separately.
+airflow webserver &
+airflow scheduler
