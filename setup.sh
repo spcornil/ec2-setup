@@ -1,5 +1,8 @@
 #!/bin/bash
 
+### Run each time a new EC2 instance is spun up
+### Installs python, spark, postgres, airflow, and required dependencies.
+
 ### Update the shell
 sudo apt update
 
@@ -24,15 +27,12 @@ sudo apt install postgresql postgresql-contrib
 #sudo -u postgres psql
 
 ### Apache Spark Install & Setup
+sudo apt-get install default-jdk
 pip install pyspark
 pip install pyarrow
 pip install py4j
 
-sudo apt-get install default-jdk
-
-
-### Airflow Install & Setup (pulled from https://airflow.apache.org/docs/apache-airflow/stable/start.html)
-
+### Airflow Install & Setup (https://airflow.apache.org/docs/apache-airflow/stable/start.html)
 # Airflow needs a home. `~/airflow` is the default, but you can put it
 # somewhere else if you prefer (optional)
 export AIRFLOW_HOME=~/airflow
@@ -40,9 +40,7 @@ export AIRFLOW_HOME=~/airflow
 # Install Airflow using the constraints file
 AIRFLOW_VERSION=2.5.1
 PYTHON_VERSION="$(python3 --version | cut -d " " -f 2 | cut -d "." -f 1-2)"
-# For example: 3.7
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
-# For example: https://raw.githubusercontent.com/apache/airflow/constraints-2.5.1/constraints-3.7.txt
 pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
 
 # The Standalone command will initialise the database, make a user,
