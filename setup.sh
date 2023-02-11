@@ -23,6 +23,14 @@ pip install pyspark
 pip install pyarrow
 pip install py4j
 
+### Install Amazon AWS Console & Boto3
+sudo apt install unzip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+pip install boto3
+
 ### Add bin to PATH
 echo >> .bashrc
 echo "### User-added Variables" >> .bashrc
